@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>thank you babe!</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #e48080;
+      }
+
+      #container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 90%; /* Limit maximum width */
+      }
+
+      .bubble {
+        width: 10vw; /* Set bubble width relative to viewport width */
+        height: 10vw; /* Set bubble height relative to viewport width */
+        margin: 1vw; /* Set margin relative to viewport width */
+        background-color: #1e90ff;
+        cursor: pointer;
+        border-radius: 50%; /* Rounded shape for bubble */
+        /* transition: transform 0.1s, background-color 0.1s; Added transition for background color change */
+        /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); */
+        transform: translate(-50%, -50%);
+        box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.2);
+        transition: 0.1s;
+      }
+
+      .bubble.popped {
+        transform: scale(0);
+      }
+
+      .bubble.popped:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .end-button,
+      .next-page-button {
+        display: block;
+        margin: auto;
+        padding: 2vw 4vw; /* Set padding relative to viewport width */
+        font-size: 3vw; /* Set font size relative to viewport width */
+        background-color: #1e90ff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 2vw; /* Set margin-top relative to viewport width */
+      }
+
+      .end-button:hover,
+      .next-page-button:hover {
+        background-color: #0d63e0;
+      }
+
+      /* Media query for larger screens */
+      @media screen and (min-width: 768px) {
+        .bubble {
+          width: 5vw; /* Set bubble width relative to viewport width */
+          height: 5vw; /* Set bubble height relative to viewport width */
+          margin: 0.5vw; /* Set margin relative to viewport width */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <audio id="popSound">
+      <source src="pop.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <script>
+      const container = document.getElementById("container");
+      const popSound = document.getElementById("popSound");
+      let resetCounter = 0;
+
+      function createBubble() {
+        const bubble = document.createElement("div");
+        bubble.classList.add("bubble");
+        bubble.addEventListener("click", () => {
+          bubble.classList.add("popped");
+          playPopSound();
+          checkAllPopped(); // Check if all bubbles are popped
+        });
+        container.appendChild(bubble);
+      }
+
+      function createBubbles(numBubbles) {
+        for (let i = 0; i < numBubbles; i++) {
+          createBubble();
+        }
+      }
+
+      function playPopSound() {
+        popSound.currentTime = 0;
+        popSound.play();
+      }
+
+      function checkAllPopped() {
+        const bubbles = document.querySelectorAll(".bubble");
+        const allPopped = Array.from(bubbles).every((bubble) =>
+          bubble.classList.contains("popped")
+        );
+        if (allPopped) {
+          createEndButton();
+          createNextPageButton(); // Create next page button
+        }
+      }
+
+      function createEndButton() {
+        const endButton = document.createElement("button");
+        endButton.textContent = "Congratulations! Play Again";
+        endButton.classList.add("end-button");
+        endButton.addEventListener("click", () => {
+          resetGame();
+        });
+        container.appendChild(endButton);
+      }
+
+      function createNextPageButton() {
+        const nextPageButton = document.createElement("button");
+        nextPageButton.textContent = "Next Page";
+        nextPageButton.classList.add("next-page-button");
+        nextPageButton.addEventListener("click", () => {
+          window.location.href = "lastpage.html"; // Redirect to the next page
+        });
+        container.appendChild(nextPageButton);
+      }
+
+      function resetGame() {
+        // Increment reset counter
+        resetCounter++;
+        // If reset more than 3 times, show alert
+        if (resetCounter > 3) {
+          alert("bhn ki lodi agge bhi bd ja");
+        } else {
+          // Remove all bubbles and buttons
+          container.innerHTML = "";
+          // Determine number of bubbles based on screen width
+          const screenWidth = window.innerWidth;
+          const numBubbles = screenWidth >= 768 ? 60: 35;
+          // Create new bubbles
+          createBubbles(numBubbles);
+        }
+      }
+
+      // Initialize the game
+      resetGame();
+    </script>
+  </body>
+</html>

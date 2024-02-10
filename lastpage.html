@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Reveal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <style>
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        font-family: "Ubuntu", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("mygif.gif") center / cover no-repeat;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        z-index: -1;
+    }
+
+    .content {
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+    }
+
+    .reveal {
+        opacity: 1;
+    }
+
+    @media (min-width: 560px) {
+        .background {
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="content">
+        <!-- Your content goes here -->
+        <h1>kiss on the red dot in 3 sec</h1>
+        <p class="mb-2">nahi kregi tho kalla kutta katega</p>
+        <a href="srslylastpage.html" class="bg-blue-400 rounded-xl p-2" id="niceKiss" style="display: none;">nice kiss</a>
+    </div>
+    <script>
+    window.onload = function () {
+        setTimeout(function () {
+            document.querySelector(".background").classList.add("reveal");
+            setTimeout(function () {
+                document.getElementById("niceKiss").style.display = "inline";
+            }, 10000); // 10 seconds for the anchor tag to appear
+        }, 2000); // 2 seconds for testing purposes
+    };
+    </script>
+</body>
+</html>

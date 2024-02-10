@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>breathe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bunny-size: 300px;
+            --bunny-color: pink;
+            --bunny-color-2: #f0a4cb;
+            --bunny-eye-color: #473929;
+            --bunny-cheek-color: red;
+            --bunny-tongue-color: red;
+            --bunny-mouth-color: #473929;
+            --bunny-nose-color: #473929;
+            
+            --stick-color: #ff8819;
+            --stick-bubble-color-1: #9e9eff;
+            --stick-bubble-color-2: white;
+            
+            --text-color: #473929;
+            --grass-color: #84cc84;
+            --grass-color-2: lightgreen;
+        
+            --breathe-duration: 10s;
+        
+            --bubble-color-1: #4fd5e7;
+            --bubble-color-2: #829fff;
+            --bubble-color-3: #76e0cf;
+            --bubble-color-4: #86befd;
+            --bubble-color-5: #91f1d9;
+        }
+        
+        body {
+            margin: 0;
+            background: linen;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Balsamiq Sans', cursive;
+        }
+        
+        .bunny-container {
+            width: var(--bunny-size);
+            height: var(--bunny-size);
+        }
+        
+        .bunny {
+            width: 230px;
+            height: 300px;
+            transform: translateX(70px);
+        }
+        
+        .bunny * {
+            position: absolute;
+        }
+        
+        .bunny__body {
+            width: 200px;
+            height: 200px;
+            background: var(--bunny-color);
+            border-radius: 100px 100px 30px 0px;
+            transform: translateY(80px);
+        }
+        
+        @keyframes eyesAnim {
+            0%, 15%, 17%,    79%, 81% { transform: translate(40px, 40px) rotateZ(6deg) }
+                16%,            80% { transform: translate(40px, 40px) rotateZ(6deg) scaleY(0.3) }
+            60% { transform: translate(40px, 30px) rotateZ(6deg) }
+            10%, 70%, 100% { transform: translate(40px, 40px) rotateZ(6deg) }
+        }
+        
+        .bunny__eyes {
+            padding: 6px;
+            background: var(--bunny-eye-color);
+            border-radius: 50%;
+            box-shadow: 80px 0 var(--bunny-eye-color);
+            transform: translate(40px, 40px) rotateZ(6deg);
+            animation: eyesAnim var(--breathe-duration) linear infinite;
+        }
+        
+        @keyframes noseAnim {
+            60% { transform: translate(70px, 40px) }
+            10%, 70%, 100% { transform: translate(70px, 50px) }
+        }
+        
+        .bunny__nose {
+            padding: 5px 8px;
+            background: var(--bunny-nose-color);
+            border-radius: 50%;
+            transform: translate(70px, 50px);
+            animation: noseAnim var(--breathe-duration) linear infinite;
+        }
+        
+        .bunny__nose::after {
+            content: '|';
+            text-shadow: 1px 0px, -1px 0;
+            color: var(--bunny-nose-color);
+            position: absolute;
+            font-size: 20px;
+            font-weight: bolder;
+            transform: translateX(-2px);
+        }
+        
+        @keyframes cheeksAnim {
+            60% { transform: translate(10px, 50px) rotateZ(5deg); opacity: 0.5 }
+            10%, 70%, 100%, 0% { transform: translate(10px, 55px) rotateZ(5deg); opacity: 0.2 }
+        }
+        
+        .bunny__cheeks {
+            padding: 18px;
+            background: var(--bunny-cheek-color);
+            border-radius: 50%;
+            transform: translate(10px, 55px) rotateZ(5deg);
+            box-shadow: 110px 0 var(--bunny-cheek-color);
+            animation: cheeksAnim var(--breathe-duration) linear infinite;
+        }
+        
+        @keyframes breatheMouthAnim {
+            0%, 10%, 75%,
+            78%, 82%, 86%, 90%, 94%, 98%, 100%, 4%, 8%
+            { transform: translate(68px, 70px) }
+            60% { transform: translate(70px, 70px) scale(3, 2.5) }
+            76%, 80%, 84%, 88%, 92%, 96%, 2%, 6% { transform: translate(66px, 70px) }
+        }
+        
+        .bunny__mouth {
+            padding: 8px 10px;
+            background: var(--bunny-tongue-color);
+            border-radius: 50%;
+            transform: translate(66px, 70px);
+            box-shadow: inset 5px 8px var(--bunny-mouth-color);
+            animation: breatheMouthAnim  var(--breathe-duration) linear infinite;
+        }
+        
+        .bunny__ears {
+            width: 200px;
+            height: 100px;
+        }
+        
+        @keyframes earLeftAnim {
+            0%, 10%, 75% { transform: var(--transform-3) }
+            15%, 17%, 65% { transform: var(--transform-1) }
+            16% { transform: var(--transform-2) }
+        
+            25%, 29%,       42%, 46%,       56%, 60% { transform: var(--transform-4) }
+            23%, 27%, 31%,  40%, 44%, 48%,  54%, 58%, 62% { transform: var(--transform-1) }
+        }
+        
+        @keyframes earRightAnim {
+            0%, 10%, 75% { transform: var(--transform-3) }
+            13%, 15%, 65% { transform: var(--transform-1) }
+            14% { transform: var(--transform-2) }
+        
+            28%, 32%,       44%, 48%,       55%, 59% { transform: var(--transform-4) }
+            26%, 30%, 34%,  42%, 46%, 50%,  53%, 57%, 61% { transform: var(--transform-1) }
+        }
+        
+        .bunny__ear {
+            width: 50px;
+            height: 100px;
+            border-radius: 50% 50% 0%;
+            background: var(--bunny-color);
+            transform-origin: bottom left;
+            box-shadow: inset 0px 15px var(--bunny-color-2);
+            transform: var(--transform-3);
+        }
+        
+        .bunny__ear--left {
+            --transform-1: translateX(50px) rotate(10deg);
+            --transform-2: translateX(50px) rotate(5deg);
+            --transform-3: translateX(50px) rotate(30deg);
+            --transform-4: translateX(50px) rotate(8deg);
+            animation: earLeftAnim var(--breathe-duration) linear infinite;
+        }
+        
+        .bunny__ear--right {
+            --transform-1: translateX(125px) rotate(25deg);
+            --transform-2: translateX(125px) rotate(20deg);
+            --transform-3: translateX(125px) rotate(45deg);
+            --transform-4: translateX(125px) rotate(23deg);
+            animation: earRightAnim var(--breathe-duration) linear infinite;
+        }
+        
+        .bunny__feet {
+            height: 35px;
+            width: 200px;
+            transform: translateY(265px);
+        }
+        
+        .bunny__foot {
+            height: 35px;
+            width: 65px;
+            background: var(--bunny-color-2);
+            border-radius: 0 0 25px 50%;
+        }
+        
+        .bunny__foot--left {
+            transform: rotate(10deg) skewY(-20deg);
+        }
+        
+        .bunny__foot--right {
+            transform: translateX(110px) rotate(10deg) skewY(-20deg);
+        }
+        
+        @keyframes tailAnim {
+            0%, 15%, 25%,   75%, 85%, 95% { transform: translate(190px, 200px) rotate(8deg) }
+                20%,        80%, 90% { transform: translate(190px, 198px) rotate(-8deg) }
+        }
+        
+        .bunny__tail {
+            height: 50px;
+            width: 40px;
+            background: var(--bunny-color-2);
+            border-radius: 50% 50% 50%;
+            transform: translate(190px, 200px) rotate(8deg);
+            animation: tailAnim 3s linear infinite;
+        }
+        
+        .bunny__arm {
+            width: 80px;
+            height: 100px;
+            transform: translate(-70px, 140px);
+        }
+        
+        @keyframes pawAnim {
+            0%, 75%, 100% { transform: translate(-47px, 197px) rotate(-2deg) }
+            65% { transform: translate(-47px, 197px) rotate(10deg) }
+        }
+        
+        .bunny__paw {
+            width: 50px;
+            height: 50px;
+            background: var(--bunny-color);
+            border-radius: 50px 0 0 50px;
+            transform-origin: bottom right;
+            transform: translate(-47px, 197px) rotate(-2deg);
+            transform: translate(-47px, 197px) rotate(10deg);
+            animation: pawAnim var(--breathe-duration) linear infinite;
+        }
+        
+        .bunny__paw::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 45px;
+            border-radius: 0 0 20px 20px;
+            background: var(--stick-color);
+            transform: translate(8px, -5px);
+        }
+        
+        .bunny__paw::after {
+            content: '';
+            position: absolute;
+            width: 19px;
+            height: 35px;
+            background: linear-gradient(-45deg,
+                var(--stick-bubble-color-1) 0% 30%,
+                var(--stick-bubble-color-2) 30% 40%,
+                var(--stick-bubble-color-1) 40% 55%,
+                var(--stick-bubble-color-2) 55% 60%,
+                var(--stick-bubble-color-1) 60% 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 8px var(--stick-color);
+            transform: translate(2px, -45px);
+        }
+        
+        .grass {
+            width: 300px;
+            height: 70px;
+            background: var(--grass-color);
+            position: absolute;
+            border-radius: 50%;
+            transform: translateY(260px);
+            box-shadow: 0 6px 0 16px var(--grass-color-2);
+        }
+        
+        .text {
+            text-align: center;
+            position: absolute;
+            width: 300px;
+            transform: translateY(-45px);
+        }
+        
+        @keyframes breatheTextAnim {
+            60%, 100% { content: "breathe out" }
+            0%, 59% { content: "breathe in" }
+            100%, 0%, 12%, 50%, 62% { opacity: 0 }
+            15%, 40%, 65%, 90% { opacity: 1 }
+        }
+        
+        .text::before {
+            content: "breathe in";
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            color: var(--text-color);
+            animation: breatheTextAnim var(--breathe-duration) linear infinite;
+        }
+        
+        .bubbles {
+            position: absolute;
+            transform: translate(-130px, 15px);
+        }
+        
+        @keyframes bubbleAnim {
+            40% { offset-distance: 0% }
+            60% { offset-distance: 100%; }
+            42%, 58% { opacity: 1 }
+            0%, 40%, 60%, 100% { opacity: 0 }
+        }
+        
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: bubbleAnim var(--breathe-duration) linear infinite;
+            --bubble-base-delay: 3s;
+            --bubble-delay: 0.2s;
+        }
+        .bubble:nth-child(n) {
+            background: var(--bubble-color-1);
+            padding: 12px;
+            transform: rotate(10deg);
+            offset-path: path('m0,0 l -500, -35');
+        }
+        .bubble:nth-child(2n) {
+            background: var(--bubble-color-2);
+            padding: 8px;
+            offset-path: path('m0,0 l -500, -25');
+        }
+        .bubble:nth-child(3n) {
+            background: var(--bubble-color-3);
+            padding: 15px;
+            offset-path: path('m0,0 l -500, 10');
+        }
+        .bubble:nth-child(4n) {
+            background: var(--bubble-color-4);
+            padding: 10px;
+            offset-path: path('m0,0 l -500, 30');
+        }
+        .bubble:nth-child(5n) {
+            background: var(--bubble-color-5);
+            padding: 17px;
+            offset-path: path('m0,0 l -500, 20');
+        }
+        
+        .bubble:nth-child(1) { animation-delay: var(--bubble-base-delay) }
+        .bubble:nth-child(2) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay)) }
+        .bubble:nth-child(3) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 2) }
+        .bubble:nth-child(4) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 3) }
+        .bubble:nth-child(5) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 4) }
+        .bubble:nth-child(6) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 5) }
+        .bubble:nth-child(7) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 6) }
+        .bubble:nth-child(8) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 7) }
+        .bubble:nth-child(9) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 8) }
+        .bubble:nth-child(10) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 9) }
+        .bubble:nth-child(11) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 10) }
+        .bubble:nth-child(12) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 11) }
+        .bubble:nth-child(13) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 12) }
+        .bubble:nth-child(14) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 13) }
+        .bubble:nth-child(15) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 14) }
+        .bubble:nth-child(16) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 15) }
+        .bubble:nth-child(17) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 16) }
+        .bubble:nth-child(18) { animation-delay: calc(var(--bubble-base-delay) + var(--bubble-delay) * 17) }
+        
+        .bubble::before, .bubble::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+        }
+        
+        .bubble::after {
+            padding: 15%;
+            opacity: 0.6;
+        }
+        
+        .bubble::before {
+            padding: 10%;
+            opacity: 0.7;
+            transform: translate(-6px, -1px);
+        }
+
+        .bottom-text {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+            color: #473929; /* Text color */
+            transition: opacity 1s ease; /* Fade transition */
+            opacity: 1; /* Initially visible */
+        }
+
+        .bottom-text.hidden {
+            opacity: 0; /* Hidden */
+        }
+    </style>
+  </head>
+  <body>
+    <div class="bunny-container">
+        <div class="text"></div>
+        <div class="grass"></div>
+        <div class="bunny">
+            <div class="bunny__ears">
+                <div class="bunny__ear bunny__ear--left"></div>
+                <div class="bunny__ear bunny__ear--right"></div>
+            </div>
+            <div class="bunny__feet">
+                <div class="bunny__foot bunny__foot--left"></div>
+                <div class="bunny__foot bunny__foot--right"></div>
+            </div>
+            <div class="bunny__tail"></div>
+            <div class="bunny__paw"></div>
+            <div class="bunny__body">
+                <div class="bunny__eyes"></div>
+                <div class="bunny__nose"></div>
+                <div class="bunny__cheeks"></div>
+                <div class="bunny__mouth"></div>
+            </div>
+        </div>
+    </div>
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+    <a href="rizz.html" class="bottom-text">press me if done</a>
+    
+</body>
+</html>
+

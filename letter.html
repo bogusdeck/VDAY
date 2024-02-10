@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=10" />
+    <title><3Letter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+        font-family: 'Poor Story', system-ui;
+        font-weight: 700;
+        color: #ff6;
+        background-color: #000;
+        overflow: hidden;
+      }
+
+      p#start {
+        position: relative;
+        width: 16em;
+        font-size: 100%;
+        font-weight: 400;
+        margin: 20% auto;
+        color: #4ee;
+        opacity: 0;
+        z-index: 1;
+        -webkit-animation: intro 2s ease-out;
+        -moz-animation: intro 2s ease-out;
+        -ms-animation: intro 2s ease-out;
+        -o-animation: intro 2s ease-out;
+        animation: intro 2s ease-out;
+      }
+
+      @-webkit-keyframes intro {
+        0% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @-moz-keyframes intro {
+        0% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @-ms-keyframes intro {
+        0% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @-o-keyframes intro {
+        0% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes intro {
+        0% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      h1 {
+        position: absolute;
+        width: 2.6em;
+        left: 50%;
+        top: 25%;
+        font-size: 10em;
+        text-align: center;
+        margin-left: -1.3em;
+        line-height: 0.8em;
+        letter-spacing: -0.05em;
+        color: #000;
+        text-shadow: -2px -2px 0 #ff6, 2px -2px 0 #ff6, -2px 2px 0 #ff6,
+          2px 2px 0 #ff6;
+        opacity: 0;
+        z-index: 1;
+        -webkit-animation: logo 5s ease-out 2.5s;
+        -moz-animation: logo 5s ease-out 2.5s;
+        -ms-animation: logo 5s ease-out 2.5s;
+        -o-animation: logo 5s ease-out 2.5s;
+        animation: logo 5s ease-out 2.5s;
+      }
+
+      h1 sub {
+        display: block;
+        font-size: 0.3em;
+        letter-spacing: 0;
+        line-height: 0.8em;
+      }
+
+      @-webkit-keyframes logo {
+        0% {
+          -webkit-transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          -webkit-transform: scale(0.1);
+          opacity: 0;
+        }
+      }
+
+      @-moz-keyframes logo {
+        0% {
+          -moz-transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          -moz-transform: scale(0.1);
+          opacity: 0;
+        }
+      }
+
+      @-ms-keyframes logo {
+        0% {
+          -ms-transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          -ms-transform: scale(0.1);
+          opacity: 0;
+        }
+      }
+
+      @-o-keyframes logo {
+        0% {
+          -o-transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          -o-transform: scale(0.1);
+          opacity: 0;
+        }
+      }
+
+      @keyframes logo {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0.1);
+          opacity: 0;
+        }
+      }
+
+      /* the interesting 3D scrolling stuff */
+      #titles {
+        position: absolute;
+        width: 18em;
+        height: 50em;
+        bottom: 0;
+        left: 50%;
+        margin-left: -9em;
+        font-size: 150%;
+        text-align: justify;
+        overflow: hidden;
+        -webkit-transform-origin: 50% 100%;
+        -moz-transform-origin: 50% 100%;
+        -ms-transform-origin: 50% 100%;
+        -o-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+        -webkit-transform: perspective(300px) rotateX(25deg);
+        -moz-transform: perspective(300px) rotateX(25deg);
+        -ms-transform: perspective(300px) rotateX(25deg);
+        -o-transform: perspective(300px) rotateX(25deg);
+        transform: perspective(300px) rotateX(25deg);
+      }
+
+      #titles:after {
+        position: absolute;
+        content: " ";
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 60%;
+        background-image: -webkit-linear-gradient(
+          top,
+          rgba(0, 0, 0, 1) 0%,
+          transparent 100%
+        );
+        background-image: -moz-linear-gradient(
+          top,
+          rgba(0, 0, 0, 1) 0%,
+          transparent 100%
+        );
+        background-image: -ms-linear-gradient(
+          top,
+          rgba(0, 0, 0, 1) 0%,
+          transparent 100%
+        );
+        background-image: -o-linear-gradient(
+          top,
+          rgba(0, 0, 0, 1) 0%,
+          transparent 100%
+        );
+        background-image: linear-gradient(
+          top,
+          rgba(0, 0, 0, 1) 0%,
+          transparent 100%
+        );
+        pointer-events: none;
+      }
+
+      #titles p {
+        text-align: justify;
+        margin: 0.8em 0;
+      }
+
+      #titles p.center {
+        text-align: center;
+      }
+
+      #titles a {
+        color: #ff6;
+        text-decoration: underline;
+        background-color: purple;
+        color :white;
+
+      }
+
+      #titlecontent {
+        position: absolute;
+        top: 100%;
+        -webkit-animation: scroll 100s linear 4s infinite;
+        -moz-animation: scroll 100s linear 4s infinite;
+        -ms-animation: scroll 100s linear 4s infinite;
+        -o-animation: scroll 100s linear 4s infinite;
+        animation: scroll 100s linear 4s infinite;
+      }
+
+      /* animation */
+      @-webkit-keyframes scroll {
+        0% {
+          top: 100%;
+        }
+        100% {
+          top: -170%;
+        }
+      }
+
+      @-moz-keyframes scroll {
+        0% {
+          top: 100%;
+        }
+        100% {
+          top: -170%;
+        }
+      }
+
+      @-ms-keyframes scroll {
+        0% {
+          top: 100%;
+        }
+        100% {
+          top: -170%;
+        }
+      }
+
+      @-o-keyframes scroll {
+        0% {
+          top: 100%;
+        }
+        100% {
+          top: -170%;
+        }
+      }
+
+      @keyframes scroll {
+        0% {
+          top: 100%;
+        }
+        100% {
+          top: -170%;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="text-xl md:text-3xl">
+    <p id="start">A short time ago we met and now this&hellip;</p>
+
+    <h1>24th JAN</h1>
+
+    <div id="titles">
+      <div id="titlecontent">
+        <p class="center">
+          My Dear,<br />
+          MEGAN FOX
+        </p>
+
+        <p>Lemme gather the courage to say things in front of you!</p>
+
+        <p>
+          As I sit down to write this letter, I'm filled with excitement and nerves, but most of all, with love for you.
+        </p>
+
+        <p>
+          From the moment we met, your beauty and charm captured my heart. Your laughter is contagious, and your kindness knows no bounds.
+        </p>
+
+        <p>
+          But what truly sets you apart is your ability to find joy in every moment, even in the most unexpected ways like your remarkable farting skills. It's just one more reason why I adore you.
+        </p>
+
+        <p>
+          But beyond your outward appearance, it's your inner beauty that truly sets you apart. Your kindness, compassion, and unwavering strength inspire me every single day. You have a heart of gold, and it's evident in the way you care for those around you.
+        </p>
+
+        <p>
+          There's something else, too, something that might seem unconventional to mention in a letter like this, but I believe it's an important part of who you are. It's your unique ability to find humor and joy in even the simplest of moments, including your remarkable farting skills. Yes, you heard that right. While some may see it as an embarrassing trait, I see it as just another endearing quality that makes you who you are wonderfully authentic and unapologetically yourself.
+        </p>
+
+        <p>
+          In you, I've found not only a partner but also a best friend someone with whom I can share my deepest thoughts, fears, and dreams. You accept me for who I am, flaws and all, and I am endlessly grateful for that.
+        </p>
+
+        <p>
+          So, MEGAN FOX, I'm laying my heart on the line and asking if you would do me the incredible honor of being my partner in life. Together, I know we can conquer any challenge that comes our way and create a lifetime of beautiful memories.
+        </p>
+
+        <p class="center">moye moye</p>
+
+        <p>
+          Please take your time to consider my proposal, and know that no matter what your decision may be, I will always cherish the moments we've shared and hold you dear to my heart.
+        </p>
+
+        <p>
+          With all my love and admiration,
+        </p>
+
+        <p class="center">ab left ka indicator dekr right ho&hellip;</p>
+
+        
+        <p>apka pyara , Tanish(me)</p>
+        <p class="center">
+          <a
+            href="choice.html"
+            class="mt-4 bg-gray-900 text-white hover:bg-gray-700 rounded-xl w-fit p-3 bg-opacity-60"
+            >agge bde?</a
+          >
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

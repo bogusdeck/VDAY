@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      body {
+        background: #9F70FD;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      #options {
+        margin-top: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 0 10px;
+        cursor: pointer;
+      }
+
+      #noBtn {
+        position: relative;
+      }
+
+      #noBtn:hover {
+        animation: move 2s infinite;
+      }
+
+      @keyframes move {
+        0% {
+          left: 0;
+        }
+        50% {
+          left: 100%;
+          opacity: 0;
+        }
+        100% {
+          left: 0;
+          opacity: 1;
+        }
+      }
+
+      .heart {
+        font-size: 6em;
+        position: relative;
+      }
+
+      .heartbeat {
+        position: relative;
+        z-index: 1;
+        animation: beat 2s linear infinite;
+      }
+
+      .heartecho {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        animation: echo 2s linear infinite;
+      }
+
+      @keyframes beat {
+        0% {
+          transform: scale(1);
+        }
+        14% {
+          transform: scale(0.9);
+        }
+        21% {
+          transform: scale(1.1) skew(0.004turn);
+        }
+        28% {
+          transform: scale(1) skew(0.008turn);
+        }
+        35% {
+          transform: scale(1) skew(0);
+        }
+      }
+
+      @keyframes echo {
+        0% {
+          opacity: 0.5;
+          transform: scale(1);
+        }
+        14% {
+          opacity: 0.4;
+          transform: scale(0.8);
+        }
+        21% {
+          opacity: 0.4;
+          transform: scale(1.1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(3);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex flex-col items-center justify-center">
+        <div class="heart">
+            <div class="heartbeat">❤️</div>
+            <div class="heartecho">❤️</div>
+        </div>
+        
+        <div class="container">
+            <h1>Would you like to go on a date with me?</h1>
+            <div id="options" class="space-x-2">
+            <a href="memories.html" ><button id="yesBtn" class="bg-red-500 text-white p-3 rounded-xl hover:bg-green-500">Yes</button></a> 
+                <button id="noBtn" class="bg-red-500 text-white p-3 rounded-xl ">No</button>
+            </div>
+        </div>
+    </div>
+      <script>
+        document
+          .getElementById("noBtn")
+          .addEventListener("mouseover", function () {
+            var button = document.getElementById("noBtn");
+            var screenWidth = window.innerWidth;
+            var screenHeight = window.innerHeight;
+            var newX = Math.random() * (screenWidth - button.offsetWidth);
+            var newY = Math.random() * (screenHeight - button.offsetHeight);
+            button.style.position = "absolute";
+            button.style.left = newX + "px";
+            button.style.top = newY + "px";
+          });
+      </script>
+    </div>
+  </body>
+</html>
