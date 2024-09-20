@@ -43,10 +43,6 @@ Deploy:
 Once you're satisfied with your changes, deploy the website to your preferred hosting platform and share the link with your loved one.
 
 
-Sure, here's a template for a Valentine Proposal Website README.md file:
-
-markdown
-Copy code
 # Valentine Proposal Website
 
 Welcome to our Valentine Proposal Website template! 💖
